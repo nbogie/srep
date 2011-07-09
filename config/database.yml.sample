@@ -1,0 +1,20 @@
+development:
+  adapter: postgresql
+  database: reports_development
+  username: rails
+  password: SECRET
+  :encoding: sql_ascii
+
+test: &test
+  adapter: postgresql
+  database: reports_test
+  username: rails
+  password: SECRET
+  :encoding: sql_ascii
+
+production:
+  adapter: postgresql
+  database: reports_test
+  username: rails
+  password: SECRET
+  :encoding: sql_ascii
