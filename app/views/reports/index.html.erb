@@ -11,8 +11,8 @@
 
 <% @reports.each do |report| %>
   <tr>
-    <td><%= report.title %></td>
-    <td><%= report.query %></td>
+    <td class='reptitle'><%= report.title %></td>
+    <td><%= report.query[0..20] %></td>
     <td><%= link_to 'Show', report %></td>
     <!-- TODO: this is a form post -->
     <td><%= link_to 'Execute to csv', execute_report_path(report, :format => :csv) %></td>
