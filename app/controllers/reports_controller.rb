@@ -86,8 +86,9 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     @csv_result = @report.execute
     respond_to do |format|
+      timestamp = Time.now.strftime("%F_%H%M%S")
       format.csv { send_data @csv_result,
-                   :filename => 'report_results.csv',
+                   :filename => "report_#{timestamp}.csv",
                    :type => 'application/csv'
                  }
       format.html
