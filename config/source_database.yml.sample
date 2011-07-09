@@ -1,0 +1,6 @@
+#This db is read only, so test can share with development
+
+--- 
+development: postgres://rails:password@localhost/snapshot
+test:        postgres://rails:password@localhost/snapshot
+production:  postgres://rails:password@localhost/snapshot

@@ -1,5 +1,10 @@
 Reportapp::Application.routes.draw do
-  resources :reports
+
+  resources :reports do
+    member do
+      get 'execute'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -80,4 +80,18 @@ class ReportsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  # POST /reports/1/execute
+  # POST /reports/1/execute.xml
+  def execute
+    @report = Report.find(params[:id])
+    @csv_result = @report.execute
+    respond_to do |format|
+      format.csv { send_data @csv_result,
+                   :filename => 'report_results.csv',
+                   :type => 'application/csv'
+                 }
+      format.html
+    end
+  end
+
 end
