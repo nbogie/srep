@@ -8,6 +8,7 @@ gem 'rails', '3.0.9'
 gem 'fastercsv', '1.5.4'
 gem 'pg', '0.11.0'
 gem 'sequel', '3.25.0'
+gem 'delayed_job'
 
 # Use unicorn as the web server
 # gem 'unicorn'
