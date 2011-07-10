@@ -4,6 +4,8 @@
   <tr>
     <th>Title</th>
     <th>Query</th>
+    <th>Last run</th>
+    <th>time taken (s)</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,11 +15,14 @@
   <tr>
     <td class='reptitle'><%= report.title %></td>
     <td><%= report.query[0..20] %></td>
+    <td><%= report.executed_at %></td>
+    <td><%= report.time_taken %></td>
     <td><%= link_to 'Show', report %></td>
     <!-- TODO: this is a form post -->
-    <td><%= link_to 'Execute to csv', execute_report_path(report, :format => :csv) %></td>
-    <td><%= link_to 'Execute to html', execute_report_path(report, :format => :html) %></td>
+    <td><%= link_to 'CSV', report_path(report, :format => :csv) %></td>
+    <td><%= link_to 'Execute', execute_report_path(report) %></td>
     <td><%= link_to 'Edit', edit_report_path(report) %></td>
+    <td>----</td>
     <td><%= link_to 'Destroy', report, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

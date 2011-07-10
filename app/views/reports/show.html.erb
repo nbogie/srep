@@ -1,16 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
+  <h3>Title:</h3>
   <%= @report.title %>
 </p>
 
 <p>
-  <b>Query:</b>
+<h3>Results</h3>
+<ul>
+  <li>Last run at <%= @report.executed_at %>.</li>
+  <li>Took <%= @report.time_taken %> seconds.</li>
+</ul>
+  <pre><%= @report.results %></pre>
+</p>
+
+<p>
+  <h3>Query:</h3>
   <pre><%= @report.query %></pre>
 </p>
 
-<%= link_to 'Execute to csv', execute_report_path(@report, :format => :csv) %> | 
-<%= link_to 'Execute to html', execute_report_path(@report, :format => :html) %> |
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %>
+<%= link_to 'View Results', report_path(@report) %> | 
+<%= link_to 'Download csv', report_path(@report, :format => :csv) %> | 
+<%= link_to 'Execute', execute_report_path(@report) %> | 
+<%= link_to 'Edit Query', edit_report_path(@report) %> |
+<%= link_to 'List All Reports', reports_path %>

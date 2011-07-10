@@ -14,10 +14,15 @@ class ReportsController < ApplicationController
   # GET /reports/1.xml
   def show
     @report = Report.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @report }
+      format.xml { render :xml => @report }
+      format.csv { 
+        timestamp = @report.executed_at.strftime("%F_%H%M%S")
+        send_data @report.results,
+          :filename => "report_#{@report.id}_at_#{timestamp}.csv",
+          :type => 'application/csv'
+      }
     end
   end
 
@@ -84,13 +89,8 @@ class ReportsController < ApplicationController
   # POST /reports/1/execute.xml
   def execute
     @report = Report.find(params[:id])
-    @csv_result = @report.execute
+    @job = Delayed::Job.enqueue ReportJob.new(@report.id)
     respond_to do |format|
-      timestamp = Time.now.strftime("%F_%H%M%S")
-      format.csv { send_data @csv_result,
-                   :filename => "report_#{timestamp}.csv",
-                   :type => 'application/csv'
-                 }
       format.html
     end
   end

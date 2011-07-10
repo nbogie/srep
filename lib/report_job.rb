@@ -1,9 +1,19 @@
 class ReportJob < Struct.new(:report_id)
 
+  require 'benchmark'
+
   def perform
     rep = Report.find(report_id)
     xlog "Executing report: #{rep.id}: #{rep.title}"
-    csv = rep.execute
+    csv=nil
+    duration = Benchmark.realtime {
+      csv = rep.execute
+    }
+    raise "execute returned nil!" if csv.nil?
+    rep.results = csv
+    rep.executed_at = Time.now #do we want start or end time?
+    rep.time_taken = duration
+    rep.save!
     xlog "Results of report #{rep.id}: #{csv}"
   end
 

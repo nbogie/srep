@@ -1,11 +1,12 @@
-<h1>Results of report  "<%= @report.title %>"</h1>
-This is a preview.  If you want to manipulate it in a spreadsheet, get 
+<h1>Queued for execution: "<%= @report.title %>"</h1>
+job = <pre><%= @job_id.inspect %></pre>
+<p/>
+If you want to manipulate it in a spreadsheet, get 
 <%= link_to 'the raw csv', execute_report_path(@report, :format => :csv) %> instead.
+<p/>
 
-<pre><%= @csv_result %></pre>
-
-<%= link_to 'Execute to csv', execute_report_path(@report, :format => :csv) %> | 
-<%= link_to 'Execute to html', execute_report_path(@report, :format => :html) %> |
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Show', @report %> |
-<%= link_to 'Back', reports_path %>
+<%= link_to 'View Results', report_path(@report) %> | 
+<%= link_to 'Download csv', report_path(@report, :format => :csv) %> | 
+<%= link_to 'Execute', execute_report_path(@report) %> | 
+<%= link_to 'Edit Query', edit_report_path(@report) %> |
+<%= link_to 'List All Reports', reports_path %>
