@@ -5,4 +5,5 @@ tmp/
 config/database.yml
 config/source_database.yml
 config/source_database.local.yml
+config/deploy/staging.rb
 *.swp

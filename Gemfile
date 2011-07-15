@@ -13,9 +13,6 @@ gem 'delayed_job'
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -30,3 +27,10 @@ gem 'delayed_job'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+group :deployer do
+  # For deploying
+  gem 'capistrano'
+  # Makes Capistrano support multiple environments (staging, production, etc...)
+  gem 'capistrano-ext', :require => nil
+end
